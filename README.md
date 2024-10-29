@@ -1,3 +1,3 @@
-Tentative comme shorten, essayer avec 4000 et quelques points 
+Tentative comme shorten, 
 
-
+A partir de 4 on teste en faisant varier la valeur du poids du pde

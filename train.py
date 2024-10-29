@@ -81,6 +81,14 @@ def train(
             loss_data = loss(U_train, pred_data)  # (MSE)
 
             # loss totale
+            # def pd_pde(epoch):
+            #     if epoch < 20:
+            #         return 0.
+            #     elif epoch < 120 :
+            #         return (epoch-20)/100
+            #     else : 
+            #         return 1.
+            # poids_pde = pd_pde(epoch)
             loss_totale = poids[0] * loss_data + poids[1] * loss_pde
 
             # Backpropagation

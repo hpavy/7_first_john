@@ -16,7 +16,7 @@ time_start = time.time()
 
 ############# VARIABLES ################
 
-folder_result_name = "3_more_data"  # name of the result folder
+folder_result_name = "piche"  # name of the result folder
 folder_result = "results/" + folder_result_name
 
 
@@ -26,6 +26,7 @@ random_seed_test = 2002
 
 ##### Hyperparameters
 # Uniquement si nouveau modèle
+
 hyper_param_init = {
     "nb_epoch": 2000,  # epoch number
     "save_rate": 50,  # rate to save
@@ -33,13 +34,14 @@ hyper_param_init = {
     "weight_pde": 1,
     "batch_size": 5000,  # for the pde
     "nb_points_pde": 1000000,  # Total number of pde points
-    "Re": 100,
+    "Re": 3900,
     "lr_init": 1e-3,  # Learning rate at the begining of training
     "gamma_scheduler": 0.999,  # Gamma scheduler for lr
     "nb_layers": 10,
-    "nb_neurons": 64,
+    "nb_neurons": 32,
     "n_pde_test": 10000,
     "n_data_test": 10000,
+    "nb_points_axes": 6,    # le nombre de points pris par axe par pas de temps
 }
 
 
@@ -59,7 +61,7 @@ else:
 ###############################################
 
 # Data loading
-X_train_np, U_train_np, X_full, U_full, mean_std = charge_data()
+X_train_np, U_train_np, X_full, U_full, mean_std = charge_data(hyper_param['nb_points_axes'])
 X_train = torch.from_numpy(X_train_np).requires_grad_().to(torch.float32).to(device)
 U_train = torch.from_numpy(U_train_np).requires_grad_().to(torch.float32).to(device)
 

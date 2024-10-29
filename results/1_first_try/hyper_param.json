@@ -11,5 +11,6 @@
     "nb_layers": 10,
     "nb_neurons": 32,
     "n_pde_test": 10000,
-    "n_data_test": 10000
+    "n_data_test": 10000,
+    "nb_points_axes": 6
 }

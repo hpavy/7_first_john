@@ -21,34 +21,39 @@ def read_csv(path):
     return pd.read_csv(path)
 
 
-def charge_data():
+def charge_data(nb_points_axes):
     """
     Charge the data of X_full, U_full with every points
     And X_train, U_train with less points
     """
     # La data
     # On adimensionne la data
-    df = pd.read_csv("data.csv")
-    df_modified = df[
-        (df["Points:0"] >= 0.015)
-        & (df["Points:0"] <= 0.2)
-        & (df["Points:1"] >= -0.1)
-        & (df["Points:1"] <= 0.1)
-        & (df["Time"] > 4)
-        & (df["Time"] < 6)
-    ]
-    # Uniquement la fin de la turbulence
+    # df = pd.read_csv("data.csv")
+    # df_modified = df[
+    #     (df["Points:0"] >= 0.015)
+    #     & (df["Points:0"] <= 0.15)
+    #     & (df["Points:1"] >= -0.06)
+    #     & (df["Points:1"] <= 0.06)
+    #     & (df["Time"] > 4)
+    #     & (df["Time"] < 6)
+    # ]
+    # # Uniquement la fin de la turbulence
 
-    x_full, y_full, t_full = (
-        np.array(df_modified["Points:0"]),
-        np.array(df_modified["Points:1"]),
-        np.array(df_modified["Time"]),
-    )
-    u_full, v_full, p_full = (
-        np.array(df_modified["Velocity:0"]),
-        np.array(df_modified["Velocity:1"]),
-        np.array(df_modified["Pressure"]),
-    )
+    # x_full, y_full, t_full = (
+    #     np.array(df_modified["Points:0"]),
+    #     np.array(df_modified["Points:1"]),
+    #     np.array(df_modified["Time"]),
+    # )
+    # u_full, v_full, p_full = (
+    #     np.array(df_modified["Velocity:0"]),
+    #     np.array(df_modified["Velocity:1"]),
+    #     np.array(df_modified["Pressure"]),
+    # )
+    mat_data_full = scipy.io.loadmat("cylinder_data.mat")
+    data_full = mat_data_full["stack"]
+
+    x_full, y_full, t_full = data_full[:, 0], data_full[:, 1], data_full[:, 2]
+    u_full, v_full, p_full = data_full[:, 3], data_full[:, 4], data_full[:, 5]
 
     x_norm_full = (x_full - x_full.mean()) / x_full.std()
     y_norm_full = (y_full - y_full.mean()) / y_full.std()
@@ -60,8 +65,8 @@ def charge_data():
     X_full = np.array([x_norm_full, y_norm_full, t_norm_full], dtype=np.float32).T
     U_full = np.array([u_norm_full, v_norm_full, p_norm_full], dtype=np.float32).T
 
-    x_int = np.linspace(x_norm_full.min(), x_norm_full.max(), 8)
-    y_int = np.linspace(y_norm_full.min(), y_norm_full.max(), 8)
+    x_int = np.linspace(x_norm_full.min(), x_norm_full.max(), nb_points_axes)
+    y_int = np.linspace(y_norm_full.min(), y_norm_full.max(), nb_points_axes)
     X_train = np.zeros((0, 3))
     U_train = np.zeros((0, 3))
     for time in np.unique(X_full[:, 2]):
