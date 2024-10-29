@@ -16,7 +16,7 @@ time_start = time.time()
 
 ############# VARIABLES ################
 
-folder_result_name = "1_first_try"  # name of the result folder
+folder_result_name = "3_more_data"  # name of the result folder
 folder_result = "results/" + folder_result_name
 
 
@@ -37,7 +37,7 @@ hyper_param_init = {
     "lr_init": 1e-3,  # Learning rate at the begining of training
     "gamma_scheduler": 0.999,  # Gamma scheduler for lr
     "nb_layers": 10,
-    "nb_neurons": 32,
+    "nb_neurons": 64,
     "n_pde_test": 10000,
     "n_data_test": 10000,
 }

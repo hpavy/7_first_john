@@ -60,8 +60,8 @@ def charge_data():
     X_full = np.array([x_norm_full, y_norm_full, t_norm_full], dtype=np.float32).T
     U_full = np.array([u_norm_full, v_norm_full, p_norm_full], dtype=np.float32).T
 
-    x_int = np.linspace(x_norm_full.min(), x_norm_full.max(), 6)
-    y_int = np.linspace(y_norm_full.min(), y_norm_full.max(), 6)
+    x_int = np.linspace(x_norm_full.min(), x_norm_full.max(), 8)
+    y_int = np.linspace(y_norm_full.min(), y_norm_full.max(), 8)
     X_train = np.zeros((0, 3))
     U_train = np.zeros((0, 3))
     for time in np.unique(X_full[:, 2]):
