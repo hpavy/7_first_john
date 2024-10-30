@@ -35,7 +35,7 @@ def charge_data(nb_points_axes):
         & (df["Points:1"] >= -0.06)
         & (df["Points:1"] <= 0.06)
         & (df["Time"] > 4)
-        & (df["Time"] < 6)
+        & (df["Time"] < 4.7)
     ]
     # Uniquement la fin de la turbulence
 

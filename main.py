@@ -16,7 +16,7 @@ time_start = time.time()
 
 ############# VARIABLES ################
 
-folder_result_name = "4_weights_modified"  # name of the result folder
+folder_result_name = "5_short_time"  # name of the result folder
 folder_result = "results/" + folder_result_name
 
 
@@ -31,7 +31,7 @@ hyper_param_init = {
     "nb_epoch": 2000,  # epoch number
     "save_rate": 50,  # rate to save
     "weight_data": 1,
-    "weight_pde": 0.5,
+    "weight_pde": 1,
     "batch_size": 5000,  # for the pde
     "nb_points_pde": 1000000,  # Total number of pde points
     "Re": 100,
